@@ -1,0 +1,57 @@
+@font-face {
+    font-family: "Audiowide";
+    src: url("imgs/Audiowide-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Titillium Web";
+    src: url("imgs/TitilliumWeb-Regular.ttf");
+}
+
+
+html,
+body {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    margin: 0;
+    font-family: "Titillium Web";
+    color: white;
+    font-size: 3vmin;
+}
+
+div {
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+}
+
+a {
+    cursor: pointer;
+}
+
+#border {
+    border-radius: 25px;
+    border: 0.3rem solid #ffffff;
+    margin: 20px;
+    flex: 1;
+
+    display: flex;
+    align-items: stretch;
+}
+
+.title {
+    font-family: "Audiowide";
+    font-size: 3vw;
+}
+
+.movetext {
+    font-family: "Audiowide";
+    font-size: 1.5vw;
+    background-color: #ffffff;
+    color: black;
+    border-radius: 0.2vw;
+}

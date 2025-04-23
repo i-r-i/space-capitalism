@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div id="border">
+        <div style="flex: 1; display: flex; position: relative;">
+            <div
+                style="top: 0; height: 100%; background-color: rgba(0, 0, 0, 0); z-index: 1; display: flex; align-content: stretch; flex: 1">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                    viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice" style="flex: 1;">
+                    <g>
+                        <image id="airlockimg" vector-effect="non-scaling-stroke" xlink:href="imgs/AIRLOCK.png"
+                            width="1536" height="1024">
+                        </image>
+                    </g>
+                    <g>
+                        <a onclick="goThroughAirlockDoor()">
+                            <rect style="opacity: 0;" vector-effect="non-scaling-stroke" x="222" y="176" rx="0" ry="0"
+                                width="415" height="503" />
+                        </a>
+                    </g>
+                    <g>
+                        <a onclick="unlockAirlockDoor()">
+                            <rect style="opacity: 0;" vector-effect="non-scaling-stroke" x="490" y="396" rx="0" ry="0"
+                                width="70" height="100" />
+                        </a>
+                    </g>
+                </svg>
+            </div>
+            <div style="position: absolute; top: 0; left: 0; z-index: 0; padding: 0.4rem; " class="title">AIRLOCK</div>
+        </div>
+    </div>
+</body>
+<script>
+    window.localStorage.setItem("airlockDoorUnlocked", "false");
+    window.localStorage.setItem("hasAirlockKeycard", "true");
+
+    if (window.localStorage.getItem("airlockDoorUnlocked") === "true") {
+        document.getElementById("airlockimg").setAttribute("xlink:href", "imgs/AIRLOCKWITHKEYCARDACCESS.png")
+    }
+
+    const goThroughAirlockDoor = () => {
+        if (window.localStorage.getItem("airlockDoorUnlocked") === "true") {
+            window.location.href = "commissary.html";
+        }
+    }
+    const unlockAirlockDoor = () => {
+        if (window.localStorage.getItem("hasAirlockKeycard") === "true" && window.localStorage.getItem("airlockDoorUnlocked") === "false") {
+            var audio = new Audio('imgs/access-click.mp3');
+            audio.play();
+            document.getElementById("airlockimg").setAttribute("xlink:href", "imgs/AIRLOCKWITHKEYCARDACCESS.png")
+            window.localStorage.setItem("airlockDoorUnlocked", "true")
+        } else if (window.localStorage.getItem("hasAirlockKeycard") === "false") {
+            var audio = new Audio('imgs/access-fail.mp3');
+            audio.play();
+        } else {
+            goThroughAirlockDoor();
+        }
+    }
+</script>

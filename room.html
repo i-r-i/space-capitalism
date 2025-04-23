@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div id="border">
+        <audio loop id="music">
+            <source src="imgs/Tense_Dystopian_Background_Music_Identification_by_Argsound.mp3" type="audio/mpeg">
+        </audio>
+        <div style="flex: 1; display: flex; position: relative;">
+            <div
+                style="top: 0; height: 100%; background-color: rgba(0, 0, 0, 0); z-index: 1; display: flex; align-content: stretch; flex: 1">
+                <!-- <svg id="airlock" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g>
+                        <image id="airlockimg" xlink:href="imgs/AIRLOCK.png"
+                            width="1536" height="1024">
+                        </image>
+                    </g>
+                    <g>
+                        <a
+                            onclick="move('commissary', [window.localStorage.getItem('airlockDoorUnlocked') === 'true'])">
+                            <rect style="opacity: 0;" x="222" y="176" rx="0" ry="0"
+                                width="415" height="503" />
+                        </a>
+                    </g>
+                    <g>
+                        <a onclick="unlockAirlockDoor()">
+                            <rect style="opacity: 0;" x="490" y="396" rx="0" ry="0"
+                                width="70" height="100" />
+                        </a>
+                    </g>
+                </svg>
+                <svg id="commissary" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g>
+                        <image xlink:href="imgs/COMMISSARY.png" width="1536"
+                            height="1024">
+                        </image>
+                    </g>
+                    <g>
+                        <a>
+                            <rect style="opacity: 0;" x="490" y="396" rx="0" ry="0"
+                                width="70" height="100" />
+                        </a>
+                    </g>
+                </svg>
+                
+                <svg id="hangar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 943" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1;  display: none;">
+                    <g>
+                        <image xlink:href="imgs/HANGAR.png" width="1536"
+                            height="943">
+                        </image>
+                    </g>
+                    <g>
+                        <a onclick="">
+                            <rect style="opacity: 0;" x="0" y="196" rx="0" ry="0"
+                                width="215" height="390" />
+                        </a>
+                    </g>
+                </svg> -->
+                <svg id="entrance" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1319 742" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g>
+                        <image xlink:href="imgs/ENTRANCE.png" width="1319" height="742">
+                        </image>
+                    </g>
+                    <g>
+                        <a onclick="move('outside hangar', [])">
+                            <rect style="opacity: 0;" x="0" y="196" rx="0" ry="0" width="215" height="390" />
+                        </a>
+                    </g>
+                    <g>
+                        <a onclick="move('airlock', [])">
+                            <rect style="opacity: 0;" x="595" y="168" rx="0" ry="0" width="300" height="326" />
+                        </a>
+                    </g>
+                </svg>
+                <svg id="airlock" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g>
+                        <image xlink:href="imgs/AIRLOCK BASE.png" width="1536" height="1024">
+                        </image>
+                    </g>
+                    <g>
+                        <a onclick="move('commissary', [checkItem('airlock keycard')])">
+                            <rect style="opacity: 0;" x="222" y="176" rx="0" ry="0" width="415" height="503" />
+                        </a>
+                    </g>
+                    <g id="airlock locker closed">
+                        <a onclick="setFlag('airlock locker open', 'true')">
+                            <image xlink:href="imgs/AIRLOCK LOCKER CLOSED.png" x="1056" y="71" width="171" height="849">
+                            </image>
+                        </a>
+                    </g>
+                    <g id="airlock locker open" visibility="hidden">
+                        <image xlink:href="imgs/AIRLOCK LOCKER OPEN.png" x="1048" y="14" width="354" height="964">
+                        </image>
+                        <a id="crew drawer key" onclick="addItem('crew drawer key')">
+                            <image xlink:href="imgs/CREW QUARTERS KEY.png" x="1142" y="825" width="64" height="45">
+                            </image>
+                        </a>
+                    </g>
+                </svg>
+                <svg id="commissary" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g>
+                        <image xlink:href="imgs/COMMISSARY BASE.png" width="1536" height="1024">
+                        </image>
+                    </g>
+
+                    <g id="crew door barred">
+                        <a onclick="checkItemsToSetFlag(['fireaxe'], 'crew door cleared')">
+                            <image xlink:href="imgs/COMMISSARY DOOR BOARD.png" x="1044" y="290" width="262"
+                                height="352">
+                            </image>
+                        </a>
+                    </g>
+                    <g id="crew door cleared" visibility="hidden">
+                        <a onclick="move('crew quarters', ['crew door cleared'])">
+                            <image xlink:href="imgs/COMMISSARY DOOR OPEN.png" x="1044" y="290" width="262" height="352">
+                            </image>
+                        </a>
+                    </g>
+                    <g>
+                        <a onclick="changeBackgroundElement('calendar', 'commissary')">
+                            <rect style="opacity: 0;" x="511" y="438" width="79" height="63" />
+                        </a>
+                    </g>
+                </svg>
+
+                <svg id="calendar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <a onclick="changeBackgroundElement('commissary', 'calendar')">
+                        <g>
+                            <image xlink:href="imgs/CALENDAR.png" width="1536" height="1024">
+                            </image>
+                        </g>
+                    </a>
+                </svg>
+
+                <svg id="freezer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g>
+                        <image xlink:href="imgs/FREEZER BASE.png" width="1536" height="1024">
+                        </image>
+                    </g>
+                    <g>
+                        <a onclick="move('commissary', [])">
+                            <rect style="opacity: 0;" x="610" y="204" width="345" height="522" />
+                        </a>
+                    </g>
+                    <g>
+                        <a onclick="move('lab', [checkItem('screwdriver')])">
+                            <rect style="opacity: 0;" x="403" y="566" width="199" height="138" />
+                        </a>
+                    </g>
+                    <g id="frozen body">
+                        <a onclick="checkItemsToSetFlag(['lighter'], 'thawed body')">
+                            <image xlink:href="imgs/FREEZER FROZEN GRENADE.png" x="1013" y="618" width="115"
+                                height="107">
+                            </image>
+                        </a>
+                    </g>
+                    <g id="body" visibility="hidden">
+                        <a onclick="addItem('grenade')">
+                            <image xlink:href="imgs/FREEZER THAWED GRENADE.png" x="1013" y="618" width="115"
+                                height="107">
+                            </image>
+                        </a>
+                    </g>
+                    <g id="body without grenade" visibility="hidden">
+                        <image xlink:href="imgs/FREEZER NO GRENADE.png" x="1013" y="618" width="115" height="107">
+                        </image>
+                    </g>
+                </svg>
+                <svg id="crew quarters" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g>
+                        <image xlink:href="imgs/CREW QUARTERS BASE.png" width="1536" height="1024">
+                        </image>
+                    </g>
+                    <g>
+                        <a onclick="move('commissary', [])">
+                            <rect style="opacity: 0;" x="556" y="197" width="275" height="432" />
+                        </a>
+                    </g>
+                    <g id="crew drawer closed">
+                        <a onclick="checkItemsToSetFlag(['crew drawer key'], 'crew drawer open')">
+                            <image xlink:href="imgs/CREW QUARTERS DRAWER LOCKED.png" x="1210" y="712" width="119"
+                                height="100">
+                            </image>
+                        </a>
+                    </g>
+                    <g id="crew drawer open" visibility="hidden">
+                        <image xlink:href="imgs/CREW QUARTERS DRAWER OPEN.png" x="1069" y="646" width="289"
+                            height="238">
+                        </image>
+                        <a id="lighter" onclick="addItem('lighter')">
+                            <image xlink:href="imgs/CREW QUARTERS LIGHTER.png" x="556" y="197" width="275" height="432">
+                            </image>
+                        </a>
+                    </g>
+                    <g id="crew drawer closed">
+                        <a onclick="changeBackgroundElement('journal', 'crew quarters')">
+                            <rect style="opacity: 0;" x="591" y="754" width="325" height="153" />
+                        </a>
+                    </g>
+                </svg>
+                <svg id="journal" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g>
+                        <a onclick="changeBackgroundElement('crew quarters', 'journal')">
+                            <image xlink:href="imgs/BOOK.png" width="1536" height="1024">
+                            </image>
+
+                        </a>
+                    </g>
+                </svg>
+                <svg id="armory" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g>
+                        <image xlink:href="imgs/ARMORY.png" width="1536" height="1024">
+                        </image>
+                    </g>
+                    <g>
+                        <a onclick="move('hangar', [])">
+                            <rect style="opacity: 0;" x="1068" y="197" width="286" height="510" />
+                        </a>
+                    </g>
+                    <g id="fireaxe">
+                        <a onclick="addItem('fireaxe')">
+                            <image xlink:href="imgs/FIREAXE.png" x="194" y="514" width="119" height="215">
+                            </image>
+                        </a>
+                    </g>
+                    <g id="screwdriver">
+                        <a onclick="addItem('screwdriver')">
+                            <image xlink:href="imgs/SCREWDRIVER.png" x="876" y="735" width="85" height="57">
+                            </image>
+                        </a>
+                    </g>
+                </svg>
+                <svg id="hangar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 943" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g>
+                        <image xlink:href="imgs/HANGAR BASE.png" width="1536" height="943">
+                        </image>
+                    </g>
+
+                    <g id="hangar door closed">
+                        <image xlink:href="imgs/HANGAR DOOR CLOSED.png" x="27" y="455" width="351" height="207">
+                        </image>
+                        <a onclick="checkFlagsToSetFlag(['power'], 'hangar door open')">
+                            <rect x="30" y="496" width="50" height="496" style="opacity: 0;" />
+                        </a>
+                    </g>
+
+                    <g id="hangar door open" visibility="hidden">
+                        <image xlink:href="imgs/HANGAR DOOR OPEN.png" x="27" y="455" width="351" height="207">
+                        </image>
+                        <a onclick="move('outside hangar', [])">
+                            <rect x="135" y="426" width="255" height="227" style="opacity: 0;" />
+                        </a>
+                    </g>
+
+                    <g id="generator off">
+                        <a onclick="checkItemsToSetFlag(['screwdriver', 'generator parts'], 'power')">
+                            <image xlink:href="imgs/HANGAR GENERATOR OFF.png" x="11" y="631" width="323" height="229">
+                            </image>
+                        </a>
+                    </g>
+                    <g id="generator on" visibility="hidden">
+                        <image xlink:href="imgs/HANGAR GENERATOR ON.png" x="11" y="631" width="323" height="229">
+                        </image>
+                    </g>
+                    <g>
+                        <a onclick="move('medbay', [checkItem('screwdriver')])">
+                            <rect x="490" y="573" width="54" height="65" style="opacity: 0;" />
+                        </a>
+                    </g>
+                    <g id="APV locked">
+                        <image xlink:href="imgs/AIRLOCK DOOR LOCKED.png" x="807" y="547" width="11" height="11">
+                        </image>
+                    </g>
+                    <g id="APV unlocked" visibility="hidden">
+                        <image xlink:href="imgs/AIRLOCK DOOR OPEN.png" x="807" y="547" width="11" height="11">
+                        </image>
+                        <a onclick="move('APC', [])">
+                            <rect x="558" y="458" width="559" height="288" style="opacity: 0;" />
+                        </a>
+                    </g>
+                </svg>
+                <svg id="outside hangar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g>
+                        <image xlink:href="imgs/OUTSIDE HANGAR.png" width="1536" height="1024">
+                        </image>
+                    </g>
+
+                    <g id="outhangar door closed">
+                        <image xlink:href="imgs/OUTSIDE HANGAR CLOSED.png" x="471" y="261" width="648" height="506">
+                        </image>
+                    </g>
+                    <g id="outhangar door open" visibility="hidden">
+                        <a onclick="move('hangar', [])">
+                            <image xlink:href="imgs/OUTSIDE HANGAR OPEN.png" x="471" y="261" width="648" height="506">
+                            </image>
+                        </a>
+                    </g>
+                    <g id="airlock keycard">
+                        <a onclick="addItem('airlock keycard')">
+                            <image xlink:href="imgs/AIRLOCK KEYCARD.png" x="573" y="857" width="106" height="67">
+                            </image>
+                        </a>
+                    </g>
+                </svg>
+                <svg id="APC" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1302 834" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g id="man before carc" onclick="setFlag('carc', 'true')">
+                        <image xlink:href="imgs/MAN BEFORE CARC.png" width="1302" height="834">
+                        </image>
+                    </g>
+
+                    <g id="carc" visibility="hidden">
+                        <image xlink:href="imgs/CARC.png" width="1302" height="834">
+                        </image>
+                    </g>
+                </svg>
+                <svg id="control center" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1260 911" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <image xlink:href="imgs/CONTROL CENTER BASE.png" width="1260" height="911">
+                    </image>
+                    <g id="gun">
+                        <a onclick="addItem('gun')">
+                            <image xlink:href="imgs/CONTROL CENTER GUN.png" x="807" y="802" width="133" height="88">
+                            </image>
+                        </a>
+                    </g>
+                    <g id="console power off">
+                        <a>
+                            <rect style="opacity: 0;" x="478" y="227" width="298" height="217" />
+                        </a>
+                    </g>
+                    <g id="console power on" visibility="hidden">
+                        <a onclick="setFlag('APC unlocked', 'true')">
+                            <image xlink:href="imgs/CONTROL CENTER CONSOLE ON.png" x="478" y="227" width="298"
+                                height="217">
+                            </image>
+                        </a>
+                    </g>
+                    <g id="console used" visibility="hidden">
+                        <image xlink:href="imgs/CONTROL CENTER CONSOLE USED.png" x="478" y="227" width="298"
+                            height="217">
+                        </image>
+                    </g>
+                    <g>
+                        <a onclick="move('lab', [])">
+                            <rect style="opacity: 0;" x="1151" y="117" width="108" height="632" />
+                        </a>
+                    </g>
+                    <g>
+                        <a onclick="move('armory', [])">
+                            <rect style="opacity: 0;" x="0" y="112" width="119" height="719" />
+                        </a>
+                    </g>
+                </svg>
+                <svg id="lab" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <g>
+                        <image xlink:href="imgs/LAB.png" width="1536" height="1024">
+                        </image>
+                    </g>
+
+                    <g id="generator parts">
+                        <a onclick="addItem('generator parts')">
+                            <image xlink:href="imgs/LAB OBJECT.png" x="906" y="735" width="92" height="106">
+                            </image>
+                        </a>
+                    </g>
+                    <g>
+                        <a onclick="changeBackgroundElement('lab notes', 'lab')">
+                            <rect style="opacity: 0;" x="77" y="760" width="159" height="115" />
+                        </a>
+                    </g>
+                </svg>
+                <svg id="lab notes" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <a onclick="changeBackgroundElement('lab', 'lab notes')">
+                        <g>
+                            <image xlink:href="imgs/BOOK.png" width="1536" height="1024">
+                            </image>
+                        </g>
+                    </a>
+                </svg>
+                <svg id="medbay" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <image xlink:href="imgs/MEDBAY.png" width="1536" height="1024">
+                    </image>
+                    <g>
+                        <a onclick="move('hangar', [checkItem('screwdriver')])">
+                            <rect style="opacity: 0;" x="165" y="808" width="181" height="144" />
+                        </a>
+                    </g>
+                    <g id="lab drawer closed">
+                        <a onclick="changeBackgroundElement('keypad', 'medbay')">
+                            <image xlink:href="imgs/MEDBAY DRAWER LOCKED.png" x="974" y="737" width="113" height="97">
+                            </image>
+                        </a>
+                    </g>
+                    <g id="lab drawer open" visibility="hidden">
+                        <image xlink:href="imgs/MEDBAY DRAWER OPEN.png" x="876" y="727" width="210" height="114">
+                        </image>
+                        <a id="acid flask" onclick="addItem('acid flask')">
+                            <image xlink:href="imgs/MEDBAY FLASK.png" x="938" y="720" width="99" height="63">
+                            </image>
+                        </a>
+                    </g>
+                </svg>
+                <svg id="keypad" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice"
+                    style="flex: 1; display: none;">
+                    <image xlink:href="imgs/KEYPAD.png" width="1536" height="1024">
+                    </image>
+                    <a onclick="changeBackgroundElement('medbay', 'keypad')">
+                        <rect x="0" y="0" width="1536" height="1024" style="opacity: 0" />
+                    </a>
+
+                    <rect x="556" y="151" width="425" height="661" style="opacity: 0" />
+
+                    <g>
+                        <a onclick="enterNumber(1)">
+                            <rect x="597" y="365" width="105" height="96" style="opacity: 0" />
+                        </a>
+                        <a onclick="enterNumber(2)">
+                            <rect x="709" y="368" width="109" height="83" style="opacity: 0" />
+                        </a>
+                        <a onclick="enterNumber(3)">
+                            <rect x="822" y="363" width="120" height="90" style="opacity: 0" />
+                        </a>
+                        <a onclick="enterNumber(4)">
+                            <rect x="597" y="464" width="100" height="94" style="opacity: 0" />
+                        </a>
+                        <a onclick="enterNumber(5)">
+                            <rect x="706" y="464" width="114" height="100" style="opacity: 0" />
+                        </a>
+                        <a onclick="enterNumber(6)">
+                            <rect x="822" y="457" width="116" height="103" style="opacity: 0" />
+                        </a>
+                        <a onclick="enterNumber(7)">
+                            <rect x="602" y="556" width="104" height="94" style="opacity: 0" />
+                        </a>
+                        <a onclick="enterNumber(8)">
+                            <rect x="708" y="564" width="117" height="92" style="opacity: 0" />
+                        </a>
+                        <a onclick="enterNumber(9)">
+                            <rect x="828" y="564" width="109" height="101" style="opacity: 0" />
+                        </a>
+                        <a onclick="enterNumber(0)">
+                            <rect x="704" y="666" width="129" height="76" style="opacity: 0" />
+                        </a>
+                    </g>
+                    <g>
+                        <text id="keypad output" x="593" y="263" style="fill:antiquewhite" font-family="Audiowide"
+                            font-size="3.5rem"></text>
+                    </g>
+                </svg>
+            </div>
+            <div id="title" style="position: absolute; top: 0; left: 0; z-index: 0; padding: 0.4rem; " class="title">
+            </div>
+            <div id="movebox"
+                style="position: absolute; bottom: 0; left: 0; z-index: 2; padding: 0.4rem; display: none;"
+                class="movetext">TO ENTRANCE</div>
+        </div>
+</body>
+<script>
+    const reset = () => {
+        window.localStorage.clear();
+        window.localStorage.setItem("airlock locker open", "false");
+        window.localStorage.setItem("crew door cleared", "false");
+        window.localStorage.setItem("crew drawer open", "false");
+        window.localStorage.setItem("hangar door open", "false")
+        window.localStorage.setItem("lab drawer open", "false");
+        window.localStorage.setItem("power", "false");
+        window.localStorage.setItem("thawed body", "false");
+        window.localStorage.setItem("APC unlocked", "false");
+        window.localStorage.setItem("carc", "false");
+
+
+        window.localStorage.setItem("currentRoom", "entrance");
+        move("entrance", []);
+        window.localStorage.setItem("items", "");
+        items = getItemsFromLocalStorage();
+    }
+
+    const adjustVisibility = (flag) => {
+        if (flagElements.hasOwnProperty(flag)) {
+            for (const e of flagElements[flag][0]) {
+                document.getElementById(e).style.visibility = "hidden";
+            }
+            for (const e of flagElements[flag][1]) {
+                document.getElementById(e).style.visibility = "visible";
+            }
+        } else if (itemElements.hasOwnProperty(flag)) {
+            document.getElementById(itemElements[flag][0]).style.visibility = "hidden";
+            var two = itemElements[flag][1];
+            if (two !== "") {
+                document.getElementById(itemElements[flag][1]).style.visibility = "visible";
+            }
+        } else {
+            console.log("found " + flag + " without entry in element table")
+        }
+    }
+
+    const code = [1, 7, 0, 3];
+
+    const changeBackgroundElement = (id, idToUnload) => {
+        document.getElementById(idToUnload).style.display = "none";
+        document.getElementById(id).style.display = "block";
+    }
+
+    const checkFlag = (flag) => window.localStorage.getItem(flag) === "true";
+
+    const setFlag = (flag, value) => {
+        window.localStorage.setItem(flag, value);
+        adjustVisibility(flag);
+    }
+
+    const checkItemsToSetFlag = (items, flag) => {
+        if (items.every(checkItem)) {
+            setFlag(flag, "true");
+        }
+    }
+
+    const checkFlagsToSetFlag = (flags, flag) => {
+        if (flags.every(checkFlag)) {
+            setFlag(flag, "true");
+        }
+    }
+
+    const getItemsFromLocalStorage = () => {
+        var items;
+        var local = window.localStorage.getItem("items");
+        if (local === null) {
+            window.localStorage.setItem("items", "");
+            return [];
+        }
+        if (local === "") return [];
+        return local.split(",");
+    }
+
+    var items = getItemsFromLocalStorage();
+
+    const addItem = (item) => {
+        if (!checkItem(item)) {
+            items.push(item);
+            window.localStorage.setItem("items", items.join(","));
+            adjustVisibility(item);
+        }
+    }
+
+    const checkItem = (item) => items.some(i => i === item);
+
+    var numbersEntered = [];
+
+    const enterNumber = (number) => {
+        numbersEntered.push(number);
+        document.getElementById("keypad output").innerHTML = document.getElementById("keypad output").innerHTML + number;
+        var match = true;
+        if (numbersEntered.length >= 4) {
+            for (var i = 0; i < numbersEntered.length; i++) {
+                if (i >= code.length) {
+                    match = false;
+                    break;
+                }
+                if (code[i] !== numbersEntered[i]) {
+                    match = false;
+                    break;
+                }
+            }
+
+            if (match) {
+                setFlag("lab drawer open", "true");
+                changeBackgroundElement("medbay", "keypad");
+                return;
+            }
+
+            numbersEntered = [];
+            document.getElementById("keypad output").innerHTML = "";
+        }
+    }
+
+    const flagElements = {
+        // "flag": ["elementId to hide", "elementId to show"],
+        "airlock locker open": [["airlock locker closed"], ["airlock locker open"]],
+        "crew door cleared": [["crew door barred"], ["crew door cleared"]],
+        "crew drawer open": [["crew drawer closed"], ["crew drawer open"]],
+        "power": [["console power off", "generator off"], ["console power on", "generator on"]],
+        "thawed body": [["frozen body"], ["body"]],
+        "hangar door open": [["hangar door closed", "outhangar door closed"], ["hangar door open", "outhangar door open"]],
+        "lab drawer open": [["lab drawer closed"], ["lab drawer open"]],
+        "APC unlocked": [["console power on", "APV locked"], ["console used", "APV unlocked"]],
+        "carc": [["man before carc"], ["carc"]]
+    }
+
+    const itemElements = {
+        // "item": ["elementId to hide", "elementId to show"],
+        "airlock keycard": ["airlock keycard", ""],
+        "crew drawer key": ["crew drawer key", ""],
+        "lighter": ["lighter", ""],
+        "fireaxe": ["fireaxe", ""],
+        "gun": ["gun", ""],
+        "screwdriver": ["screwdriver", ""],
+        "grenade": ["body", "body without grenade"],
+        "generator parts": ["generator parts", ""],
+        "acid flask": ["acid flask", ""]
+    }
+
+    const roomNeighbours = {
+        "airlock": ["entrance"],
+        "control center": ["commissary"],
+        "commissary": ["airlock", "freezer", "control center"],
+        "lab": ["control center", "freezer"],
+        "armory": ["control center"],
+        "hangar": ["armory"],
+        "APC": ["hangar"],
+        "outside hangar": ["entrance"]
+    }
+
+    const move = (room, flags) => {
+        if (flags.every(Boolean)) {
+            document.getElementById(window.localStorage.getItem("currentRoom")).style.display = "none";
+            document.getElementById(room).style.display = "block";
+            document.getElementById("title").innerHTML = room.toUpperCase();
+
+            if (roomNeighbours.hasOwnProperty(room)) {
+                const contents = roomNeighbours[room].map(e => "<a onclick=\"move('" + e + "', [])\">TO " + e.toUpperCase() + "</a>").join("<br>");
+                const mb = document.getElementById("movebox");
+                mb.innerHTML = contents;
+                mb.style.display = "block";
+            } else {
+                const mb = document.getElementById("movebox");
+                mb.style.display = "none";
+            }
+            window.localStorage.setItem("currentRoom", room);
+        }
+    }
+
+    for (const p in flagElements) {
+        if (checkFlag(p)) adjustVisibility(p);
+    }
+
+    for (const p of items) {
+        adjustVisibility(p);
+    }
+
+    move(window.localStorage.getItem("currentRoom"), []);
+
+    var audio = new Audio('imgs/Tense_Dystopian_Background_Music_Identification_by_Argsound.mp3');
+    audio.play();
+</script>

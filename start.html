@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div id="border">
+        <div style="display: flex; flex: 1; flex-direction: column; align-items: stretch;">
+            <div style="flex: 0 0 auto; display: flex; flex-direction: row;">
+                <div class="title" style="flex: 1; font-size: 2rem;">JOBS</div>
+                <div id="nocrew"
+                    style="flex: 0 1 auto; background-color: #c50a25ff; border-width: 2px; margin-right:3px; font-family: Audiowide; padding: 0.5rem; text-align: center;">
+                    a
+                </div>
+                <div id="shipfunds"
+                    style="flex: 0 1 auto; background-color: #c50a25ff; border-width: 2px; font-family: Audiowide; padding: 0.5rem; text-align: center; margin: auto;">
+                    jesiojfosies
+                </div>
+            </div>
+            <div style="background-color: aliceblue; flex: 1; margin-top: 10px;  ">a</div>
+        </div>
+    </div>
+</body>
+<script>
+    document.onkeydown = function (e) {
+        e = e || window.event;
+        // use e.keyCode
+        // if (e.keyCode == 39) {
+        //     window.location.href = "next.html";
+        // } else if (e.keyCode == 37) {
+        //     console.log("go back");
+        // }
+    };
+    window.localStorage.setItem("nocrew", 11);
+    window.localStorage.setItem("shipfunds", 13462);
+
+    document.getElementById("nocrew").innerHTML = window.localStorage.getItem("nocrew") + " CREW MEMBERS<br>REMAINING";
+    document.getElementById("shipfunds").innerHTML = "SHIP FUNDS:<br>" + window.localStorage.getItem("shipfunds") + " C";
+</script>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        nextpg = "";
+        prvpg = "start.html";
+        document.onkeydown = function (e) {
+            e = e || window.event;
+            // use e.keyCode
+            if (e.keyCode == 39) {
+            } else if (e.keyCode == 37) {
+                window.location.href = prvpg;
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div id="border">
+
+        <div style="display: flex; align-items: center;">
+            <div class="title" style="text-align: center;">
+                NEXT PAGE
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
