@@ -573,6 +573,10 @@
         return local.split(",");
     }
 
+    if (window.localStorage.getItem("currentRoom") === null) {
+        reset();
+    }
+
     var items = getItemsFromLocalStorage();
 
     const addItem = (item) => {
@@ -680,6 +684,4 @@
 
     move(window.localStorage.getItem("currentRoom"), []);
 
-    var audio = new Audio('imgs/Tense_Dystopian_Background_Music_Identification_by_Argsound.mp3');
-    audio.play();
 </script>
